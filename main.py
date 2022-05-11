@@ -1,25 +1,28 @@
 """
-yamlファイルに書き込む設定
-web_server:
-    host:127.0.0.1
-    port:80
-
-db_server:
-    host:127.0.0.1
-    port:3306
+CRITICAL
+ERROR
+WARNING
+INFO
+DEBUG
 """
-import yaml
 
-# yamlファイルの作成
-with open('config.yaml', 'w') as yaml_file:
-    yaml.dump({
-        'web_server': {
-            'host': '127.0.0.1',
-            'port': 80
-        },
-        'db_server': {
-            'host': '127.0.0.1',
-            'port': 3306
-        }
-        # yamlファイルないの記述をブロックスタイルにするにはdefault_flow_style=Falseに
-    }, yaml_file, default_flow_style=False)
+# loggingの使い方
+import logging
+
+# ログ情報をファイルに書き出したい場合
+logging.basicConfig(filename='test.log', level=logging.DEBUG)
+
+# # ロギングのログレベルはデフォルトでwarningまでなので指定してログレベルを変更する
+# logging.basicConfig(level=logging.DEBUG)
+#
+# # ロギングの各種表示方法
+# logging.critical('critical')
+# logging.error('error')
+# logging.warning('warning')
+# logging.info('info')
+# logging.debug('debug')
+
+# ロギング内での表記方法
+# (%s, 代入したい文)
+logging.info('info %s', 'test')
+logging.debug('debug %s', 'test')
