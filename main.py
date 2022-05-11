@@ -9,8 +9,14 @@ DEBUG
 # loggingの使い方
 import logging
 
+# ロギングの出力をformatしたい場合
+# ロギングのフォーマットはドキュメントに記載されている
+# https://docs.python.org/ja/3/library/logging.html?highlight=logging
+formatter = '%(asctime)s:%(levelname)s:%(message)s'
+logging.basicConfig(level=logging.DEBUG, format=formatter)
+
 # ログ情報をファイルに書き出したい場合
-logging.basicConfig(filename='test.log', level=logging.DEBUG)
+# logging.basicConfig(filename='test.log', level=logging.DEBUG)
 
 # # ロギングのログレベルはデフォルトでwarningまでなので指定してログレベルを変更する
 # logging.basicConfig(level=logging.DEBUG)
