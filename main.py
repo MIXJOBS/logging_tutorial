@@ -9,17 +9,33 @@ DEBUG
 # loggingの使い方
 import logging
 
-import logtest
+# import logtest
 
 # ロガー
 # メインのコード意外でlogを表示したい場合に使用する
 logging.basicConfig(level=logging.INFO)
 logging.info('info')
+
+
 # logger = logging.getLogger(__name__)
 # logger.setLevel(logging.DEBUG)
 # logging.debug('debug')
 
-logtest.do_log_test()
+# ロギングのフィルタ
+class NoPassFilter(logging.Filter):
+    def filter(self, record):
+        log_message = record.getMessage()
+        # 'password'という単語をフィルタ
+        return 'password' not in log_message
+
+
+logger = logging.getLogger(__name__)
+logger.addFilter(NoPassFilter())
+logger.info('from main')
+logger.info('from main password = "test"')
+
+# logtestのメソッドを使用
+# logtest.do_log_test()
 
 # ロギングの出力をformatしたい場合
 # ロギングのフォーマットはドキュメントに記載されている
